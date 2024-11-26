@@ -8,6 +8,7 @@
 //        See arXiv:2405.02400.
 // \author <cullenms@fnal.gov>
 
+#include <cmath>
 #include <string>
 
 #include "OscLib/Cache.h"
@@ -93,9 +94,14 @@ namespace osc {
     /// Do we need to recompute the nontrivial energy-independent terms?
     mutable bool fIsDirty;
     
-    // Constants for unit conversions, using Fermi constant for matter effect.
-    double const eVsqkm_to_GeV_over4 = 1e-9 / 1.97327e-7 * 1e3 / 4;
-    double const YerhoE2a = 1.52e-4;
+    //double const YerhoE2a = 1.526483072e-4;
+    // To compute a from Ye*rho, we need to multiply 2 sqrt(2) by the Fermi constant (in GeV^-2)
+    //   by a unit conversion mole/cm^3 / GeV^2 to eV.
+    // These values are taken exactly from PMNSOpt.h for as-close-as-possible agreement.
+    const double YerhoE2a = 2 * sqrt(2) * 1.166371e-5 * 4.62711492217e-9 * 1e9;
+    // Unit conversion: Multiply by me to convert eV^2 km to GeV.
+    // Again, the exact value is taken from PMNSOpt.h for as-close-as-possible agreement.
+    const double eVsqkm_to_GeV = 1e-9 / 1.97326968e-10;
   };
   
   typedef _OscCalcNuFast<double> OscCalcNuFast;

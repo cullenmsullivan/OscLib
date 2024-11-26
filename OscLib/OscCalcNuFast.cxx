@@ -6,7 +6,6 @@
 #include "OscLib/OscCalcNuFast.h"
 
 #include <cassert>
-#include <cmath>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -214,7 +213,7 @@ namespace osc {
     // ----------------------- //
     // Get the kinematic terms //
     // ----------------------- //
-    Lover4E = (eVsqkm_to_GeV_over4 * L) / E,
+    Lover4E = (eVsqkm_to_GeV * L / 4) / E,
     
     D21 = Dlambda21 * Lover4E,
     D32 = Dlambda32 * Lover4E,
