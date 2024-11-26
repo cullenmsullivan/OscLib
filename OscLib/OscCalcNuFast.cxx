@@ -88,19 +88,16 @@ namespace osc {
   }
   
   template<typename T> T _OscCalcNuFast<T>::P(int from, int to, double E) {
-    //std::cout << "NuFast: Calling double overload." << std::endl;
     return _P<T>(from,to,E);
   }
   
   template<typename T> Eigen::ArrayX<T> _OscCalcNuFast<T>::P(int from, int to, const Eigen::ArrayXd& E)
   {
-    //std::cout << "NuFast: Calling Eigen::ArrayXd overload." << std::endl;
     return _P<Eigen::ArrayX<T>>(from,to,E);
   }
   
   template<typename T> Eigen::ArrayX<T> _OscCalcNuFast<T>::P(int from, int to, const std::vector<double>& E)
   {
-    //std::cout << "NuFast: Calling std::vector<double> overload (size = " << E.size() << ")." << std::endl;
     return P(from,to,Eigen::Map<const Eigen::ArrayXd>(E.data(),E.size()));
   }
   
